@@ -1,8 +1,8 @@
-import pyautogui
+import pyautogui as pa
 import time
 import sys
 from datetime import datetime
-pyautogui.FAILSAFE = False
+pa.FAILSAFE = False
 numMin = None
 if ((len(sys.argv)<2) or sys.argv[1].isalpha() or int(sys.argv[1])<1):
     numMin = 3
@@ -13,9 +13,8 @@ while(True):
     while(x<numMin):
         time.sleep(60)
         x+=1
-    for i in range(0,200):
-        pyautogui.moveTo(0,i*4)
-    pyautogui.moveTo(1,1)
-    for i in range(0,3):
-        pyautogui.press("shift")
+    x , y = pa.position()
+    pa.moveTo(x+5, y+5)
+    pa.press("shift")
+    pa.press("ctrl")
     print("Movement made at {}".format(datetime.now().time()))
